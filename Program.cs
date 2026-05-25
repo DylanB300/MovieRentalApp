@@ -118,7 +118,7 @@ namespace MovieRentalApp
             {
                 Console.WriteLine("invalid login");
             }
-        }
+        }//end of login method
 
 
     }//End of program
