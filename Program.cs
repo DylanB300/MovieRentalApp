@@ -1,4 +1,7 @@
-﻿namespace MovieRentalApp
+﻿using System.Runtime.CompilerServices;
+using System.Xml.Serialization;
+
+namespace MovieRentalApp
 {
     internal class Program
     {
@@ -6,11 +9,36 @@
         static List<Customer> customers = new List<Customer>();
         static void Main(string[] args)
         {
-            Console.WriteLine("movie app");
+            //propt user to log in for sign in 
+            //variables for switch case menu 
+            int menuOption;
+            char choice = 'y';
 
+            //do {
+                Console.WriteLine("welcome to the movie app");
+                Console.WriteLine("plase selcet an option");
+                Console.WriteLine("1. sign in");
+                    Console.WriteLine("2. log in");
+                    menuOption = Convert.ToInt32(Console.ReadLine());
+
+                    switch (menuOption)
+                    {
+                    case 1:
+                         AddCustomer();
+                        break;
+                    case 2:
+                      
+                        LoginCustomer();
+                        break;
+                    default:
+                        Console.WriteLine("this was not an option");
+                        Console.WriteLine("would you like to try agian (y/n)");
+                        break;
+                    }
+                //}while (choice != 'n');
 
             int option;
-            char choice = 'y';
+            
 
             do
             {
@@ -23,9 +51,11 @@
                 {
                     case 1:
                         Console.WriteLine("your choice is veiw movies");
+                        //veiw movie method
                         break;
                     case 2:
                         Console.WriteLine("you choice is view customer information");
+                        //customer infor mation method 
                         break;
                     case 99:
                         Environment.Exit(0);
@@ -62,6 +92,32 @@
             //Add the new Customer list
             customers.Add(newCustomer);
             Console.WriteLine("You have been registered");
+        }//end of addcustomer 
+
+        public static void LoginCustomer() 
+        {                
+            Console.WriteLine("what is your login name");
+            string login = Console.ReadLine();
+            Console.WriteLine("plase enter your pssword");
+            string passWord = Console.ReadLine();
+            Console.WriteLine();
+
+
+            if (login == "admin" && passWord == "pass")
+            {
+                Console.WriteLine("admin login successful");
+                //admin method 
+
+            }
+            else if (customers.Any(c => c.CustLogin == login && c.CustPassword == passWord ))
+            {
+                Console.WriteLine("customer login successful");
+
+            }
+            else
+            {
+                Console.WriteLine("invalid login");
+            }
         }
 
 
