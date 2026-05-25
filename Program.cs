@@ -12,6 +12,7 @@ namespace MovieRentalApp
             //propt user to log in for sign in 
             //variables for switch case menu 
             int menuOption;
+            char loginchoice = 'y';
             char choice = 'y';
 
             //do {
@@ -27,7 +28,6 @@ namespace MovieRentalApp
                          AddCustomer();
                         break;
                     case 2:
-                      
                         LoginCustomer();
                         break;
                     default:
@@ -35,7 +35,7 @@ namespace MovieRentalApp
                         Console.WriteLine("would you like to try agian (y/n)");
                         break;
                     }
-                //}while (choice != 'n');
+               // }while (loginchoice != 'n');
 
             int option;
             
@@ -95,7 +95,7 @@ namespace MovieRentalApp
         }//end of addcustomer 
 
         public static void LoginCustomer() 
-        {                
+        {
             Console.WriteLine("what is your login name");
             string login = Console.ReadLine();
             Console.WriteLine("plase enter your pssword");
@@ -113,11 +113,14 @@ namespace MovieRentalApp
             {
                 Console.WriteLine("customer login successful");
 
+
             }
             else
             {
                 Console.WriteLine("invalid login");
             }
+
+            
         }//end of login method
 
 
