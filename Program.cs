@@ -2,6 +2,8 @@
 {
     internal class Program
     {
+        //Declare the customer list
+        static List<Customer> customers = new List<Customer>();
         static void Main(string[] args)
         {
             Console.WriteLine("movie app");
@@ -38,6 +40,30 @@
 
 
             } while (choice != 'n');
+        }//End of main
+        //Methods
+        public static void AddCustomer()
+        {
+            Console.WriteLine("Adding customer");
+            Console.WriteLine("Enter your Log in");
+            string custLoginEntered = Console.ReadLine();
+            Console.WriteLine("Enter your password");
+            string custPasswordEntered = Console.ReadLine();
+            Console.WriteLine("Enter your Name");
+            string custNameEntered = Console.ReadLine();
+            Console.WriteLine("Enter your phone number");
+            string custPhoneEntered = Console.ReadLine();
+            Console.WriteLine("Enter your Email");
+            string custEmailEntered = Console.ReadLine();
+
+            //Creating the object, Call the constructor
+            Customer newCustomer = new Customer(custLoginEntered, custPasswordEntered, custNameEntered, custPhoneEntered, custEmailEntered);
+
+            //Add the new Customer list
+            customers.Add(newCustomer);
+            Console.WriteLine("You have been registered");
         }
-    }
-}
+
+
+    }//End of program
+}//End of namespace
