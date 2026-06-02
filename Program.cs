@@ -7,8 +7,11 @@ namespace MovieRentalApp
     {
         //Declare the customer list
         static List<Customer> customers = new List<Customer>();
+        static List<Movie> movies = new List<Movie>();
+
         static void Main(string[] args)
         {
+            LoadMovies();
             //propt user to log in for sign in 
             //variables for switch case menu 
             int menuOption;
@@ -55,7 +58,7 @@ namespace MovieRentalApp
                 {
                     case 1:
                         Console.WriteLine("your choice is veiw movies");
-                        //veiw movie method
+                        Movie.ViewMovies(movies);
                         break;
                     case 2:
                         Console.WriteLine("you choice is view customer information");
@@ -142,6 +145,12 @@ namespace MovieRentalApp
             }
         }//End of ViewCustomer Method
 
-
+        public static void LoadMovies()
+        {
+            movies.Add(new Movie("Avatar", "Sci-Fi", 2009, 10));
+            movies.Add(new Movie("Titanic", "Romance", 1997, 10));
+            movies.Add(new Movie("The Dark Knight", "Action", 2008, 10));
+            movies.Add(new Movie("Toy Story", "Animation", 1995, 10));
+        }
     }//End of program
 }//End of namespace
