@@ -16,40 +16,40 @@ namespace MovieRentalApp
             char choice = 'y';
             bool loggedIn = false;
             //do {
-                Console.WriteLine("welcome to the movie app");
-                Console.WriteLine("plase selcet an option");
-                Console.WriteLine("1. sign in");
-                    Console.WriteLine("2. log in");
-                    menuOption = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("welcome to the movie app");
+            Console.WriteLine("plase selcet an option");
+            Console.WriteLine("1. sign in");
+            Console.WriteLine("2. log in");
+            menuOption = Convert.ToInt32(Console.ReadLine());
 
-                    switch (menuOption)
+            switch (menuOption)
+            {
+                case 1:
+                    AddCustomer();
+                    break;
+                case 2:
+                    loggedIn = LoginCustomer();
+                    if (!loggedIn)
                     {
-                    case 1:
-                         AddCustomer();
-                        break;
-                    case 2:
-                        loggedIn = LoginCustomer();
-                        if (!loggedIn)
-                        {
                         Environment.Exit(0);
                     }
-                        break;
-                    default:
-                        Console.WriteLine("this was not an option");
-                        Console.WriteLine("would you like to try agian (y/n)");
-                        break;
-                    }
-               // }while (loginchoice != 'n');
+                    break;
+                default:
+                    Console.WriteLine("this was not an option");
+                    Console.WriteLine("would you like to try agian (y/n)");
+                    break;
+            }
+            // }while (loginchoice != 'n');
 
             int option;
-            
+
 
             do
             {
                 Console.WriteLine("1. view movie");
                 Console.WriteLine("2. customer info");
                 Console.WriteLine("99. exit");
-                option = Convert.ToInt32(Console.ReadLine);
+                option = Convert.ToInt32(Console.ReadLine());
 
                 switch (option)
                 {
@@ -59,7 +59,8 @@ namespace MovieRentalApp
                         break;
                     case 2:
                         Console.WriteLine("you choice is view customer information");
-                        //customer infor mation method 
+                        //customer information method
+                        ViewCustomer();
                         break;
                     case 99:
                         Environment.Exit(0);
@@ -98,7 +99,7 @@ namespace MovieRentalApp
             Console.WriteLine("You have been registered");
         }//end of addcustomer 
 
-        public static bool LoginCustomer() 
+        public static bool LoginCustomer()
         {
             int attempts = 0;
 
@@ -122,16 +123,24 @@ namespace MovieRentalApp
                     Console.WriteLine("customer login successful");
                     return true;
                 }
-                
-                
-                    attempts++;
-                    Console.WriteLine($"invalid login Attempts remaining: {3 - attempts}");
-                
-                
+
+
+                attempts++;
+                Console.WriteLine($"invalid login Attempts remaining: {3 - attempts}");
+
+
             }
             Console.WriteLine("You have used all 3 login attempts.");
-                return false;
+            return false;
         }//end of login method
+
+        public static void ViewCustomer()
+        {
+            foreach (Customer cust in customers)
+            {
+                cust.DisplayCustomerDetails();
+            }
+        }//End of ViewCustomer Method
 
 
     }//End of program
