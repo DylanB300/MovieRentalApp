@@ -14,7 +14,7 @@ namespace MovieRentalApp
             int menuOption;
             char loginchoice = 'y';
             char choice = 'y';
-
+            bool loggedIn = false;
             //do {
                 Console.WriteLine("welcome to the movie app");
                 Console.WriteLine("plase selcet an option");
@@ -28,7 +28,11 @@ namespace MovieRentalApp
                          AddCustomer();
                         break;
                     case 2:
-                        LoginCustomer();
+                        loggedIn = LoginCustomer();
+                        if (!loggedIn)
+                        {
+                        Environment.Exit(0);
+                    }
                         break;
                     default:
                         Console.WriteLine("this was not an option");
@@ -94,33 +98,39 @@ namespace MovieRentalApp
             Console.WriteLine("You have been registered");
         }//end of addcustomer 
 
-        public static void LoginCustomer() 
+        public static bool LoginCustomer() 
         {
-            Console.WriteLine("what is your login name");
-            string login = Console.ReadLine();
-            Console.WriteLine("plase enter your pssword");
-            string passWord = Console.ReadLine();
-            Console.WriteLine();
+            int attempts = 0;
 
-
-            if (login == "admin" && passWord == "pass")
+            while (attempts < 3)
             {
-                Console.WriteLine("admin login successful");
-                //admin method 
+                Console.WriteLine("what is your login name");
+                string login = Console.ReadLine();
+                Console.WriteLine("plase enter your pssword");
+                string passWord = Console.ReadLine();
+                Console.WriteLine();
 
+
+                if (login == "admin" && passWord == "pass")
+                {
+                    Console.WriteLine("admin login successful");
+                    //admin method 
+                    return true;
+                }
+                else if (customers.Any(c => c.CustLogin == login && c.CustPassword == passWord))
+                {
+                    Console.WriteLine("customer login successful");
+                    return true;
+                }
+                
+                
+                    attempts++;
+                    Console.WriteLine($"invalid login Attempts remaining: {3 - attempts}");
+                
+                
             }
-            else if (customers.Any(c => c.CustLogin == login && c.CustPassword == passWord ))
-            {
-                Console.WriteLine("customer login successful");
-
-
-            }
-            else
-            {
-                Console.WriteLine("invalid login");
-            }
-
-            
+            Console.WriteLine("You have used all 3 login attempts.");
+                return false;
         }//end of login method
 
 
