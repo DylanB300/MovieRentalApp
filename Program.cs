@@ -91,7 +91,7 @@ namespace MovieRentalApp
             Console.WriteLine("Enter your Log in");
             string custLoginEntered = Console.ReadLine();
             Console.WriteLine("Enter your password");
-            string custPasswordEntered = Console.ReadLine();
+            string custPasswordEntered = ReadPassword();
             Console.WriteLine("Enter your Name");
             string custNameEntered = Console.ReadLine();
             Console.WriteLine("Enter your phone number");
@@ -115,8 +115,8 @@ namespace MovieRentalApp
             {
                 Console.WriteLine("what is your login name");
                 string login = Console.ReadLine();
-                Console.WriteLine("plase enter your pssword");
-                string passWord = Console.ReadLine();
+                Console.WriteLine("please enter your password");
+                string passWord = ReadPassword();
                 Console.WriteLine();
 
 
@@ -156,6 +156,33 @@ namespace MovieRentalApp
             movies.Add(new Movie("Titanic", "Romance", 1997, 10));
             movies.Add(new Movie("The Dark Knight", "Action", 2008, 10));
             movies.Add(new Movie("Toy Story", "Animation", 1995, 10));
+        }
+        public static string ReadPassword()
+        {
+            string password = "";
+            ConsoleKeyInfo key;
+
+            do
+            {
+                key = Console.ReadKey(true);
+
+                if (key.Key != ConsoleKey.Backspace &&
+                    key.Key != ConsoleKey.Enter)
+                {
+                    password += key.KeyChar;
+                    Console.Write("*");
+                }
+                else if (key.Key == ConsoleKey.Backspace &&
+                         password.Length > 0)
+                {
+                    password = password.Substring(0, password.Length - 1);
+                    Console.Write("\b \b");
+                }
+
+            } while (key.Key != ConsoleKey.Enter);
+
+            Console.WriteLine();
+            return password;
         }
     }//End of program
 }//End of namespace
