@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Xml.Serialization;
 
 namespace MovieRentalApp
@@ -51,6 +52,7 @@ namespace MovieRentalApp
             {
                 Console.WriteLine("1. view movie");
                 Console.WriteLine("2. customer info");
+                Console.WriteLine("3. rent movie");
                 Console.WriteLine("99. exit");
                 option = Convert.ToInt32(Console.ReadLine());
 
@@ -64,6 +66,9 @@ namespace MovieRentalApp
                         Console.WriteLine("you choice is view customer information");
                         //customer information method
                         ViewCustomer();
+                        break;
+                    case 3:
+                        Movie.RentMovie(movies);
                         break;
                     case 99:
                         Environment.Exit(0);

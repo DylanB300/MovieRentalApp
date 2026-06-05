@@ -27,6 +27,37 @@ namespace MovieRentalApp
 
         //methods 
 
+        public static void RentMovie(List<Movie> movies)
+        {
+            // Display available movies
+            ViewMovies(movies);
+
+            Console.WriteLine("Would you like to rent a movie? (Y/N)");
+            string answer = Console.ReadLine();
+
+            if (answer.ToUpper() == "Y")
+            {
+                Console.WriteLine("Enter the title of the movie you want to rent:");
+                string movieTitle = Console.ReadLine();
+
+                Movie selectedMovie = movies.FirstOrDefault(m => m.Title.ToLower() == movieTitle.ToLower());
+
+                if (selectedMovie != null)
+                {
+                    Console.WriteLine($"You have rented '{selectedMovie.Title}'");
+                    Console.WriteLine($"Rental Price: ${selectedMovie.RentalPrice}");
+                }
+                else
+                {
+                    Console.WriteLine("Movie not found.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Returning to menu...");
+            }
+        }
+
         public static void ViewMovies(List<Movie> movies)
         {
             //this method displays movies from the list 
@@ -40,6 +71,7 @@ namespace MovieRentalApp
                 Console.WriteLine($"Year: {movie.Year}");
                 Console.WriteLine();
             }
+
         }
     }
 
