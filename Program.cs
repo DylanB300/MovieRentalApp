@@ -78,7 +78,7 @@ namespace MovieRentalApp
                         break;
 
                 }//end of switch
-                Console.WriteLine("do yo wish to continue");
+                Console.WriteLine("do yo wish to continue (y/n)");
                 choice = Convert.ToChar(Console.ReadLine());
 
 

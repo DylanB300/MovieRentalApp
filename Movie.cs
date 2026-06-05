@@ -69,7 +69,7 @@ namespace MovieRentalApp
                 Console.WriteLine($"Title: {movie.Title}");
                 Console.WriteLine($"Genre: {movie.Genre}");
                 Console.WriteLine($"Year: {movie.Year}");
-                Console.WriteLine();
+                Console.WriteLine($"price: {movie.RentalPrice}");
             }
 
         }
