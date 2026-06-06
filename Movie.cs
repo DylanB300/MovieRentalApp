@@ -6,15 +6,21 @@ using System.Threading.Tasks;
 
 namespace MovieRentalApp
 {
-    public class Movie
+    public class Movie : IMovie
     {
+        public List<Movie> movies = new List<Movie>();
+
+        public List<Movie> Movies => movies;
+
         //feild 
         public string Title { get; set; }
         public string Genre { get; set; }
         public int Year { get; set; }
         public double RentalPrice { get; set; }
 
-        //properties 
+        public Movie()
+        {
+        }
 
         //constructor
         public Movie(string title, string genre, int year, double rentalPrice)
@@ -72,6 +78,26 @@ namespace MovieRentalApp
                 Console.WriteLine($"price: {movie.RentalPrice}");
             }
 
+        }
+
+        public void AddMovie(Movie movie)
+        {
+            Movies.Add(movie);
+        }
+
+        public void RemoveMovie(string title)
+        {
+            foreach (Movie movie in Movies)
+            {
+                if (movie.Title == title)
+                {
+                    Movies.Remove(movie);
+                    Console.WriteLine("Movie removed");
+                    return;
+                }
+            }
+
+            Console.WriteLine("Movie not found");
         }
     }
 

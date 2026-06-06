@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace MovieRentalApp
 {
-    public class Admin
+    public interface IMovie
     {
-
+        List<Movie> Movies { get; }
+        void AddMovie(Movie movie);
+        void RemoveMovie(string title); 
     }
-
 }
-

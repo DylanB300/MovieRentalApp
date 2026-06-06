@@ -8,7 +8,7 @@ namespace MovieRentalApp
     {
         //Declare the customer list
         static List<Customer> customers = new List<Customer>();
-        static List<Movie> movies = new List<Movie>();
+        static IMovie Movies = new Movie();
 
         static void Main(string[] args)
         {
@@ -53,6 +53,8 @@ namespace MovieRentalApp
                 Console.WriteLine("1. view movie");
                 Console.WriteLine("2. customer info");
                 Console.WriteLine("3. rent movie");
+                Console.WriteLine("4. Add movie");
+                Console.WriteLine("5. Remove movie");
                 Console.WriteLine("99. exit");
                 option = Convert.ToInt32(Console.ReadLine());
 
@@ -60,7 +62,7 @@ namespace MovieRentalApp
                 {
                     case 1:
                         Console.WriteLine("your choice is veiw movies");
-                        Movie.ViewMovies(movies);
+                        Movie.ViewMovies(Movies.Movies);
                         break;
                     case 2:
                         Console.WriteLine("you choice is view customer information");
@@ -68,7 +70,15 @@ namespace MovieRentalApp
                         ViewCustomer();
                         break;
                     case 3:
-                        Movie.RentMovie(movies);
+                        Movie.RentMovie(Movies.Movies);
+                        break;
+                    case 4:
+                        //Adding movie
+                        AddingMovie();
+                        break;
+                    case 5:
+                        //Removing Movie
+                        RemovingMovie();
                         break;
                     case 99:
                         Environment.Exit(0);
@@ -84,6 +94,7 @@ namespace MovieRentalApp
 
             } while (choice != 'n');
         }//End of main
+        
         //Methods
         public static void AddCustomer()
         {
@@ -152,11 +163,48 @@ namespace MovieRentalApp
 
         public static void LoadMovies()
         {
-            movies.Add(new Movie("Avatar", "Sci-Fi", 2009, 10));
-            movies.Add(new Movie("Titanic", "Romance", 1997, 10));
-            movies.Add(new Movie("The Dark Knight", "Action", 2008, 10));
-            movies.Add(new Movie("Toy Story", "Animation", 1995, 10));
-        }
+            Movies.AddMovie(new Movie("Avatar", "Sci-Fi", 2009, 10));
+            Movies.AddMovie(new Movie("Titanic", "Romance", 1997, 10));
+            Movies.AddMovie(new Movie("The Dark Knight", "Action", 2008, 10));
+            Movies.AddMovie(new Movie("Toy Story", "Animation", 1995, 10));
+        }//End of LoadMovies
+
+        //Adding Movies to the list
+        public static void AddingMovie()
+        {
+            Console.WriteLine("Adding Movie");
+
+            Console.WriteLine("Enter Title: ");
+            string titleEntered = Console.ReadLine();
+
+            Console.WriteLine("Enter Genre: ");
+            string genreEntered = Console.ReadLine();
+
+            Console.Write("Enter Year: ");
+            int yearEntered = Convert.ToInt32(Console.ReadLine());
+
+            Console.Write("Enter Cost of Movie: ");
+            double priceEntered = Convert.ToDouble(Console.ReadLine());
+
+            Movie newMovie = new Movie(titleEntered, genreEntered, yearEntered, priceEntered);
+
+            Movies.AddMovie(newMovie);
+
+            Console.WriteLine("Movie has been added");
+        }//End of AddingMovie
+
+        //Removing Movies from the list
+        public static void RemovingMovie()
+        {
+            Console.WriteLine("Removing Movie");
+
+            Console.WriteLine("Enter Title of Movie you wish to Remove: ");
+            string titleEntered = Console.ReadLine();
+            
+            Movies.RemoveMovie(titleEntered);
+        }//End of Removing Movies
+
+
         public static string ReadPassword()
         {
             string password = "";
