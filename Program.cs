@@ -9,6 +9,7 @@ namespace MovieRentalApp
         //Declare the customer list
         static List<Customer> customers = new List<Customer>();
         static IMovie Movies = new Movie();
+        static Admin admin = new Admin("admin", "pass");
 
         static void Main(string[] args)
         {
@@ -16,83 +17,52 @@ namespace MovieRentalApp
             //propt user to log in for sign in 
             //variables for switch case menu 
             int menuOption;
-            char loginchoice = 'y';
             char choice = 'y';
-            bool loggedIn = false;
-            //do {
-            Console.WriteLine("welcome to the movie app");
-            Console.WriteLine("plase selcet an option");
-            Console.WriteLine("1. sign in");
-            Console.WriteLine("2. log in");
-            menuOption = Convert.ToInt32(Console.ReadLine());
+            string user = "";
+            do {
+                Console.WriteLine("Welcome to the movie app");
+                Console.WriteLine("Please select an option");
+                Console.WriteLine("1. Sign up");
+                Console.WriteLine("2. Log in");
+                Console.WriteLine("99. Exit");
 
-            switch (menuOption)
-            {
-                case 1:
-                    AddCustomer();
-                    break;
-                case 2:
-                    loggedIn = LoginCustomer();
-                    if (!loggedIn)
-                    {
-                        Environment.Exit(0);
-                    }
-                    break;
-                default:
-                    Console.WriteLine("this was not an option");
-                    Console.WriteLine("would you like to try agian (y/n)");
-                    break;
-            }
-            // }while (loginchoice != 'n');
+                menuOption = Convert.ToInt32(Console.ReadLine());
 
-            int option;
-
-
-            do
-            {
-                Console.WriteLine("1. view movie");
-                Console.WriteLine("2. customer info");
-                Console.WriteLine("3. rent movie");
-                Console.WriteLine("4. Add movie");
-                Console.WriteLine("5. Remove movie");
-                Console.WriteLine("99. exit");
-                option = Convert.ToInt32(Console.ReadLine());
-
-                switch (option)
+                switch (menuOption)
                 {
                     case 1:
-                        Console.WriteLine("your choice is veiw movies");
-                        Movie.ViewMovies(Movies.Movies);
+                        AddCustomer();
                         break;
                     case 2:
-                        Console.WriteLine("you choice is view customer information");
-                        //customer information method
-                        ViewCustomer();
+                        user = LoginCustomer();
+                        if (user == "none")
+                        {
+                            Environment.Exit(0);
+                        }
+                        else
+                        {
+                            choice = 'n';
+                        }
                         break;
-                    case 3:
-                        Movie.RentMovie(Movies.Movies);
-                        break;
-                    case 4:
-                        //Adding movie
-                        AddingMovie();
-                        break;
-                    case 5:
-                        //Removing Movie
-                        RemovingMovie();
-                        break;
-                    case 99:
-                        Environment.Exit(0);
+                        case 99:
+                            Environment.Exit(0);
                         break;
                     default:
                         Console.WriteLine("this was not an option");
+                        Console.WriteLine("would you like to try agian (y/n)");
                         break;
+                }
+            }while (choice == 'y');
 
-                }//end of switch
-                Console.WriteLine("do yo wish to continue (y/n)");
-                choice = Convert.ToChar(Console.ReadLine());
+            if (user == "admin")
+            {
+                AdminMenu();
+            }
+            else if (user == "customer")
+            {
+                CustomerMenu();
+            }
 
-
-            } while (choice != 'n');
         }//End of main
         
         //Methods
@@ -118,7 +88,7 @@ namespace MovieRentalApp
             Console.WriteLine("You have been registered");
         }//end of addcustomer 
 
-        public static bool LoginCustomer()
+        public static string LoginCustomer()
         {
             int attempts = 0;
 
@@ -131,16 +101,15 @@ namespace MovieRentalApp
                 Console.WriteLine();
 
 
-                if (login == "admin" && passWord == "pass")
+                if (login == admin.AdminLogin && passWord == admin.AdminPassword)
                 {
-                    Console.WriteLine("admin login successful");
-                    //admin method 
-                    return true;
+                    Console.WriteLine("Admin login successful");
+                    return "admin";
                 }
                 else if (customers.Any(c => c.CustLogin == login && c.CustPassword == passWord))
                 {
-                    Console.WriteLine("customer login successful");
-                    return true;
+                    Console.WriteLine("Customer login successful");
+                    return "customer";
                 }
 
 
@@ -150,8 +119,101 @@ namespace MovieRentalApp
 
             }
             Console.WriteLine("You have used all 3 login attempts.");
-            return false;
+            return "none";
         }//end of login method
+
+        //Method for Admin user switch case
+        public static void AdminMenu()
+        {
+            int option;
+            char choice;
+
+            do
+            {
+                Console.WriteLine("1. View Movies");
+                Console.WriteLine("2. Add Movie");
+                Console.WriteLine("3. Remove Movie");
+                Console.WriteLine("99. Exit");
+
+                option = Convert.ToInt32(Console.ReadLine());
+
+                switch (option)
+                {
+                    case 1:
+                        Movie.ViewMovies(Movies.Movies);
+                        break;
+
+                    case 2:
+                        AddingMovie();
+                        break;
+
+                    case 3:
+                        RemovingMovie();
+                        break;
+
+                    case 99:
+                        Environment.Exit(0);
+                        return;
+
+                    default:
+                        Console.WriteLine("Invalid option");
+                        break;
+                }
+
+                Console.WriteLine("Continue? (y/n)");
+                choice = Convert.ToChar(Console.ReadLine());
+
+            } while (choice != 'n');
+        }//End of AdminMenu
+
+        //Method for Customer user switch case
+        public static void CustomerMenu()
+        {
+            int option;
+            char choice;
+
+            do
+            {
+                Console.WriteLine("1. View Movies");
+                Console.WriteLine("2. Customer Info");
+                Console.WriteLine("3. Rent Movie");
+                Console.WriteLine("99. Exit");
+
+                option = Convert.ToInt32(Console.ReadLine());
+
+                switch (option)
+                {
+                    case 1:
+                        Movie.ViewMovies(Movies.Movies);
+                        break;
+
+                    case 2:
+                        ViewCustomer();
+                        break;
+
+                    case 3:
+                        Movie.RentMovie(Movies.Movies);
+                        break;
+
+                    case 99:
+                        Environment.Exit(0);
+                        return;
+
+                    default:
+                        Console.WriteLine("Invalid option");
+                        break;
+                }
+
+                Console.WriteLine("Continue? (y/n)");
+                choice = Convert.ToChar(Console.ReadLine());
+
+            } while (choice != 'n');
+        }//End of CustomerMenu
+
+
+
+
+
 
         public static void ViewCustomer()
         {
