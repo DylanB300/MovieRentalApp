@@ -10,6 +10,8 @@ namespace MovieRentalApp
     {
         List<Movie> Movies { get; }
         void AddMovie(Movie movie);
-        void RemoveMovie(string title); 
+        void RemoveMovie(string title);
+
+        void UpdateMovie(string title);
     }
 }

@@ -133,7 +133,8 @@ namespace MovieRentalApp
                 Console.WriteLine("1. View Movies");
                 Console.WriteLine("2. Add Movie");
                 Console.WriteLine("3. Remove Movie");
-                
+                Console.WriteLine("4. Update Movie");
+                Console.WriteLine("5. Search Movies");
                 Console.WriteLine("99. Exit");
 
                 option = Convert.ToInt32(Console.ReadLine());
@@ -151,7 +152,12 @@ namespace MovieRentalApp
                     case 3:
                         RemovingMovie();
                         break;
-
+                    case 4:
+                        UpdatingMovie();
+                        break;
+                    case 5:
+                        Movie.SearchMovie(Movies.Movies);
+                        break;
                     case 99:
                         Environment.Exit(0);
                         return;
@@ -300,9 +306,17 @@ namespace MovieRentalApp
 
             Console.WriteLine();
             return password;
-        }
+        }//End of ReadPassword
+
+        public static void UpdatingMovie()
+        {
+            Console.WriteLine("Enter the title of the movie to update:");
+            string title = Console.ReadLine();
+
+            Movies.UpdateMovie(title);
+        }//End of UpdatingMovie
 
 
-        
+
     }//End of program
 }//End of namespace

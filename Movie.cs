@@ -121,6 +121,38 @@ namespace MovieRentalApp
             {
                 Console.WriteLine("Movie not found.");
             }
+        }//Endo of search movie
+
+        public void UpdateMovie(string title)
+        {
+            Movie movieUpdate = Movies.FirstOrDefault(
+                m => m.Title.Equals(title, StringComparison.OrdinalIgnoreCase));
+
+            if (movieUpdate == null)
+            {
+                Console.WriteLine("Movie not found.");
+                return;
+            }
+
+            Console.WriteLine("Current Movie Details");
+            Console.WriteLine($"Title: {movieUpdate.Title}");
+            Console.WriteLine($"Genre: {movieUpdate.Genre}");
+            Console.WriteLine($"Year: {movieUpdate.Year}");
+            Console.WriteLine($"Price: {movieUpdate.RentalPrice}");
+
+            Console.WriteLine("Enter new title:");
+            movieUpdate.Title = Console.ReadLine();
+
+            Console.WriteLine("Enter new genre:");
+            movieUpdate.Genre = Console.ReadLine();
+
+            Console.WriteLine("Enter new year:");
+            movieUpdate.Year = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("Enter new rental price:");
+            movieUpdate.RentalPrice = Convert.ToDouble(Console.ReadLine());
+
+            Console.WriteLine("Movie updated successfully.");
         }
     }
 
