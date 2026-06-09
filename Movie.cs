@@ -99,6 +99,29 @@ namespace MovieRentalApp
 
             Console.WriteLine("Movie not found");
         }
+        //method to search movies in the main menu of our app
+        public static void SearchMovie(List<Movie> movies)
+        {
+            Console.WriteLine("Enter movie title to search:");
+            string title = Console.ReadLine();
+
+            Movie foundMovie = movies.FirstOrDefault(m =>
+                m.Title.ToLower() == title.ToLower());
+
+            if (foundMovie != null)
+            {
+                Console.WriteLine("\nMovie Found");
+                Console.WriteLine("-----------");
+                Console.WriteLine($"Title: {foundMovie.Title}");
+                Console.WriteLine($"Genre: {foundMovie.Genre}");
+                Console.WriteLine($"Year: {foundMovie.Year}");
+                Console.WriteLine($"Price: ${foundMovie.RentalPrice}");
+            }
+            else
+            {
+                Console.WriteLine("Movie not found.");
+            }
+        }
     }
 
 }

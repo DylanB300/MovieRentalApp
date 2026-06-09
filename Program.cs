@@ -133,6 +133,7 @@ namespace MovieRentalApp
                 Console.WriteLine("1. View Movies");
                 Console.WriteLine("2. Add Movie");
                 Console.WriteLine("3. Remove Movie");
+                
                 Console.WriteLine("99. Exit");
 
                 option = Convert.ToInt32(Console.ReadLine());
@@ -175,8 +176,10 @@ namespace MovieRentalApp
             do
             {
                 Console.WriteLine("1. View Movies");
+
                 Console.WriteLine("2. Customer Info");
                 Console.WriteLine("3. Rent Movie");
+                Console.WriteLine("4. search movie");
                 Console.WriteLine("99. Exit");
 
                 option = Convert.ToInt32(Console.ReadLine());
@@ -193,6 +196,10 @@ namespace MovieRentalApp
 
                     case 3:
                         Movie.RentMovie(Movies.Movies);
+                        break;
+
+                    case 4:
+                        Movie.SearchMovie(Movies.Movies);
                         break;
 
                     case 99:
@@ -294,5 +301,8 @@ namespace MovieRentalApp
             Console.WriteLine();
             return password;
         }
+
+
+        
     }//End of program
 }//End of namespace
