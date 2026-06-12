@@ -32,8 +32,17 @@ namespace MovieRentalApp
                 Console.WriteLine("2. Log in");
                 Console.WriteLine("99. Exit");
 
-                menuOption = Convert.ToInt32(Console.ReadLine());
-
+                //Try catch for menu option input
+                try
+                {
+                    menuOption = Convert.ToInt32(Console.ReadLine());
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Please enter a vaild number");
+                    continue;
+                }
+                //Switch case for menu options
                 switch (menuOption)
                 {
                     case 1:
@@ -43,6 +52,8 @@ namespace MovieRentalApp
                         user = LoginCustomer();
                         if (user == "none")
                         {
+                            Console.WriteLine("Exiting App......");
+                            Console.WriteLine("Goodbye");
                             Environment.Exit(0);
                         }
                         else
@@ -59,7 +70,8 @@ namespace MovieRentalApp
                         Console.WriteLine("This was not an option");
                         Console.WriteLine("Would you like to try agian (y/n)");
                         break;
-                }
+                }//End of switch case
+                //Ask user if they want to continue or exit
             }while (choice == 'y');
 
             if (user == "admin")
@@ -96,6 +108,7 @@ namespace MovieRentalApp
             //Add the new Customer list
             customers.Add(newCustomer);
             Console.WriteLine("You have been registered");
+            Console.WriteLine("Log in to continue");
         }//end of addcustomer 
 
         //Method that allows user to login
@@ -135,9 +148,9 @@ namespace MovieRentalApp
 
         //Method for Admin user switch case
         public static void AdminMenu()
-        {
+        {//Admin menu with switch case for admin options
             int option;
-            char choice;
+            char choice = 'y';
 
             do
             {
@@ -152,8 +165,15 @@ namespace MovieRentalApp
                 Console.WriteLine("4. Update Movie");
                 Console.WriteLine("5. Search Movies");
                 Console.WriteLine("99. Exit");
-
-                option = Convert.ToInt32(Console.ReadLine());
+                try
+                {
+                    option = Convert.ToInt32(Console.ReadLine());
+                }
+                catch (FormatException) 
+                {
+                    Console.WriteLine("Please enter a vaild number");
+                    continue;
+                }
 
                 switch (option)
                 {
@@ -194,8 +214,10 @@ namespace MovieRentalApp
         //Method for Customer user switch case
         public static void CustomerMenu()
         {
+            //Declare Variables for switch case
             int option;
-            char choice;
+            
+            char choice = 'y';
 
             do
             {
@@ -209,9 +231,17 @@ namespace MovieRentalApp
                 Console.WriteLine("3. Rent Movie");
                 Console.WriteLine("4. Search Movie");
                 Console.WriteLine("99. Exit");
-
-                option = Convert.ToInt32(Console.ReadLine());
-
+                //Try catch for menu option input
+                try
+                {
+                    option = Convert.ToInt32(Console.ReadLine());
+                }
+                catch (FormatException) 
+                {
+                    Console.WriteLine("Please enter a vaild number");
+                    continue;
+                }
+                //Switch case for
                 switch (option)
                 {
                     case 1:

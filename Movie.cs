@@ -76,7 +76,7 @@ namespace MovieRentalApp
                 Console.WriteLine($"Title: {movie.Title}");
                 Console.WriteLine($"Genre: {movie.Genre}");
                 Console.WriteLine($"Year: {movie.Year}");
-                Console.WriteLine($"price: {movie.RentalPrice}");
+                Console.WriteLine($"Price: {movie.RentalPrice}");
                 Console.WriteLine("---------------------------");
             }
 
@@ -145,16 +145,16 @@ namespace MovieRentalApp
             Console.WriteLine($"Year: {movieUpdate.Year}");
             Console.WriteLine($"Price: {movieUpdate.RentalPrice}");
 
-            Console.WriteLine("Enter new title:");
+            Console.WriteLine("Enter new Title:");
             movieUpdate.Title = Console.ReadLine();
 
-            Console.WriteLine("Enter new genre:");
+            Console.WriteLine("Enter new Genre:");
             movieUpdate.Genre = Console.ReadLine();
 
-            Console.WriteLine("Enter new year:");
+            Console.WriteLine("Enter new Year:");
             movieUpdate.Year = Convert.ToInt32(Console.ReadLine());
 
-            Console.WriteLine("Enter new rental price:");
+            Console.WriteLine("Enter new rental Price:");
             movieUpdate.RentalPrice = Convert.ToDouble(Console.ReadLine());
 
             Console.WriteLine("Movie updated successfully.");
