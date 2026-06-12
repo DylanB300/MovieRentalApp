@@ -37,7 +37,7 @@ namespace MovieRentalApp
         public void DisplayCustomerDetails()
         {
             Console.WriteLine($"\nName: \t{CustName} \nPhone: \t{CustPhone}\nEmail: \t{CustEmail}");
-        }
+        }//End of Display Customer Details Method
 
 
 

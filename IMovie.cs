@@ -8,6 +8,7 @@ namespace MovieRentalApp
 {
     public interface IMovie
     {
+        //Movie Interface
         List<Movie> Movies { get; }
         void AddMovie(Movie movie);
         void RemoveMovie(string title);

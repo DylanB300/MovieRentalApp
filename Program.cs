@@ -19,7 +19,13 @@ namespace MovieRentalApp
             int menuOption;
             char choice = 'y';
             string user = "";
-            do {
+            //Main switch case
+            do
+            {
+                Console.WriteLine("******************************************");
+                Console.WriteLine("             Movie Rental App             ");
+                Console.WriteLine("******************************************");
+                Console.WriteLine();
                 Console.WriteLine("Welcome to the movie app");
                 Console.WriteLine("Please select an option");
                 Console.WriteLine("1. Sign up");
@@ -45,11 +51,13 @@ namespace MovieRentalApp
                         }
                         break;
                         case 99:
+                            Console.WriteLine("Exiting App......");
+                            Console.WriteLine("Goodbye");
                             Environment.Exit(0);
                         break;
                     default:
-                        Console.WriteLine("this was not an option");
-                        Console.WriteLine("would you like to try agian (y/n)");
+                        Console.WriteLine("This was not an option");
+                        Console.WriteLine("Would you like to try agian (y/n)");
                         break;
                 }
             }while (choice == 'y');
@@ -64,11 +72,13 @@ namespace MovieRentalApp
             }
 
         }//End of main
-        
+
         //Methods
+        //Method that adds customer information
         public static void AddCustomer()
         {
             Console.WriteLine("Adding customer");
+            Console.WriteLine("****************");
             Console.WriteLine("Enter your Log in");
             string custLoginEntered = Console.ReadLine();
             Console.WriteLine("Enter your password");
@@ -88,15 +98,16 @@ namespace MovieRentalApp
             Console.WriteLine("You have been registered");
         }//end of addcustomer 
 
+        //Method that allows user to login
         public static string LoginCustomer()
         {
             int attempts = 0;
 
             while (attempts < 3)
             {
-                Console.WriteLine("what is your login name");
+                Console.WriteLine("What is your login name");
                 string login = Console.ReadLine();
-                Console.WriteLine("please enter your password");
+                Console.WriteLine("Please enter your password");
                 string passWord = ReadPassword();
                 Console.WriteLine();
 
@@ -130,6 +141,11 @@ namespace MovieRentalApp
 
             do
             {
+                Console.WriteLine("******************************************");
+                Console.WriteLine("             Movie Rental App             ");
+                Console.WriteLine("******************************************");
+                Console.WriteLine();
+                Console.WriteLine("Please Select an Option");
                 Console.WriteLine("1. View Movies");
                 Console.WriteLine("2. Add Movie");
                 Console.WriteLine("3. Remove Movie");
@@ -159,6 +175,8 @@ namespace MovieRentalApp
                         Movie.SearchMovie(Movies.Movies);
                         break;
                     case 99:
+                        Console.WriteLine("Exiting App......");
+                        Console.WriteLine("Goodbye");
                         Environment.Exit(0);
                         return;
 
@@ -181,11 +199,15 @@ namespace MovieRentalApp
 
             do
             {
+                Console.WriteLine("******************************************");
+                Console.WriteLine("             Movie Rental App             ");
+                Console.WriteLine("******************************************");
+                Console.WriteLine();
+                Console.WriteLine("Please Select an Option");
                 Console.WriteLine("1. View Movies");
-
                 Console.WriteLine("2. Customer Info");
                 Console.WriteLine("3. Rent Movie");
-                Console.WriteLine("4. search movie");
+                Console.WriteLine("4. Search Movie");
                 Console.WriteLine("99. Exit");
 
                 option = Convert.ToInt32(Console.ReadLine());
@@ -209,6 +231,8 @@ namespace MovieRentalApp
                         break;
 
                     case 99:
+                        Console.WriteLine("Exiting App......");
+                        Console.WriteLine("Goodbye");
                         Environment.Exit(0);
                         return;
 
@@ -224,10 +248,7 @@ namespace MovieRentalApp
         }//End of CustomerMenu
 
 
-
-
-
-
+        //Method to view customer details
         public static void ViewCustomer()
         {
             foreach (Customer cust in customers)
@@ -236,18 +257,25 @@ namespace MovieRentalApp
             }
         }//End of ViewCustomer Method
 
+        //Method that loads the movies list
         public static void LoadMovies()
         {
             Movies.AddMovie(new Movie("Avatar", "Sci-Fi", 2009, 10));
             Movies.AddMovie(new Movie("Titanic", "Romance", 1997, 10));
             Movies.AddMovie(new Movie("The Dark Knight", "Action", 2008, 10));
             Movies.AddMovie(new Movie("Toy Story", "Animation", 1995, 10));
+            Movies.AddMovie(new Movie("Star Wars", "Sci-Fi", 1977, 5));
+            Movies.AddMovie(new Movie("Madagascar", "Animation", 2005, 10));
+            Movies.AddMovie(new Movie("Shrek", "Animation", 2001, 10));
+            Movies.AddMovie(new Movie("The Avengers", "Action", 2012, 10));
+
         }//End of LoadMovies
 
         //Adding Movies to the list
         public static void AddingMovie()
         {
             Console.WriteLine("Adding Movie");
+            Console.WriteLine("****************");
 
             Console.WriteLine("Enter Title: ");
             string titleEntered = Console.ReadLine();
@@ -272,6 +300,7 @@ namespace MovieRentalApp
         public static void RemovingMovie()
         {
             Console.WriteLine("Removing Movie");
+            Console.WriteLine("****************");
 
             Console.WriteLine("Enter Title of Movie you wish to Remove: ");
             string titleEntered = Console.ReadLine();
@@ -279,7 +308,7 @@ namespace MovieRentalApp
             Movies.RemoveMovie(titleEntered);
         }//End of Removing Movies
 
-
+        //Changes Password input to asterisk
         public static string ReadPassword()
         {
             string password = "";
@@ -308,6 +337,7 @@ namespace MovieRentalApp
             return password;
         }//End of ReadPassword
 
+        //Method that updates the movies in the list
         public static void UpdatingMovie()
         {
             Console.WriteLine("Enter the title of the movie to update:");

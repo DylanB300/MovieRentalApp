@@ -12,17 +12,17 @@ namespace MovieRentalApp
 
         public List<Movie> Movies => movies;
 
-        //feild 
+        //Field 
         public string Title { get; set; }
         public string Genre { get; set; }
         public int Year { get; set; }
         public double RentalPrice { get; set; }
 
+        //Constructor
         public Movie()
         {
         }
 
-        //constructor
         public Movie(string title, string genre, int year, double rentalPrice)
         {
             Title = title;
@@ -31,8 +31,8 @@ namespace MovieRentalApp
             RentalPrice = rentalPrice;
         }
 
-        //methods 
-
+        //Methods 
+        //Renting Movie Method
         public static void RentMovie(List<Movie> movies)
         {
             // Display available movies
@@ -52,6 +52,7 @@ namespace MovieRentalApp
                 {
                     Console.WriteLine($"You have rented '{selectedMovie.Title}'");
                     Console.WriteLine($"Rental Price: ${selectedMovie.RentalPrice}");
+                    movies.Remove(selectedMovie);
                 }
                 else
                 {
@@ -62,7 +63,7 @@ namespace MovieRentalApp
             {
                 Console.WriteLine("Returning to menu...");
             }
-        }
+        }//End of RentMovie method
 
         public static void ViewMovies(List<Movie> movies)
         {
@@ -76,10 +77,12 @@ namespace MovieRentalApp
                 Console.WriteLine($"Genre: {movie.Genre}");
                 Console.WriteLine($"Year: {movie.Year}");
                 Console.WriteLine($"price: {movie.RentalPrice}");
+                Console.WriteLine("---------------------------");
             }
 
-        }
+        }//End of ViewMovies
 
+        //Method to Add Movies
         public void AddMovie(Movie movie)
         {
             Movies.Add(movie);
@@ -98,7 +101,8 @@ namespace MovieRentalApp
             }
 
             Console.WriteLine("Movie not found");
-        }
+        }//End of AddMovie
+
         //method to search movies in the main menu of our app
         public static void SearchMovie(List<Movie> movies)
         {
@@ -121,8 +125,9 @@ namespace MovieRentalApp
             {
                 Console.WriteLine("Movie not found.");
             }
-        }//Endo of search movie
+        }//End of search movie
 
+        //Method to update movie information
         public void UpdateMovie(string title)
         {
             Movie movieUpdate = Movies.FirstOrDefault(
@@ -153,7 +158,7 @@ namespace MovieRentalApp
             movieUpdate.RentalPrice = Convert.ToDouble(Console.ReadLine());
 
             Console.WriteLine("Movie updated successfully.");
-        }
+        }//End of UpdateMovie method
     }
 
 }
